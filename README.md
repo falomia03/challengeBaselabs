@@ -100,6 +100,61 @@ Se evidencia que el cargue de ventas tardo al rededor de 4 minutos (12825363).
 
 Se evidencia que el cargue de compras tardo al rededor de 1 minuto (2372474)
 
+![image](https://github.com/user-attachments/assets/e5e3b661-dab2-4f5b-8129-630844865f74)
+
+Se evidencia que el exportable tardo milisegundos en generarse.
+
+## Verificación de datos
+
+Tabla compras (muestra de datos):
+
+![image](https://github.com/user-attachments/assets/ee12123d-169a-4e53-9a70-80ce96219bef)
+
+Tabla ventas (muestra de datos):
+
+![image](https://github.com/user-attachments/assets/d17dd14a-b8ec-42c8-af8d-88fabc593696)
+
+### Query con la logica para dar solución al challenge
+
+<pre><code>
+  SELECT A.Brand,
+	   A.description AS BrandDescription,
+       TotalQuantitySales,
+       TotalQuantityPurchase,
+       (SalesDollarsTotal-PurchasesDollarsTotal) AS Profit,
+       CASE
+           WHEN PurchasesDollarsTotal = 0 THEN 0
+           ELSE CAST(((SalesDollarsTotal-PurchasesDollarsTotal)/PurchasesDollarsTotal) * 100 AS INTEGER)
+       END AS MarginPercent
+FROM
+  (SELECT Brand,
+  		  description,
+          SUM(Dollars) AS PurchasesDollarsTotal,
+          SUM(Quantity) AS TotalQuantityPurchase
+   FROM P_STAGING.purchasesInventory
+   GROUP BY Brand,description) A
+INNER JOIN
+  (SELECT Brand,
+  		  description,
+          SUM(SalesDollars) AS SalesDollarsTotal,
+          SUM(SalesQuantity) AS TotalQuantitySales
+   FROM p_staging.salesInventory
+   GROUP BY Brand,description) B ON A.Brand=B.Brand
+WHERE TotalQuantitySales<TotalQuantityPurchase;
+
+</code></pre>
+
+Para la contstrucción de este query se tomo en cuenta lo siguiente:
+
+- Cruce de las tablas ventas y compras por la llave de marca (Brand)
+- Se agrupa por marca para poder generar las cantidad de compras y de ventas, adicionalmente para efectuar los siguientes calculos:
+- Para realizar el calculo de la ganancia total se emplea la siguiente formula:
+  ![image](https://github.com/user-attachments/assets/fa2fd3b3-7224-4628-a723-1d438d2c22ef)
+
+  Se agrupa por marca y adicionalmente se suma los dolares para dicha marca con objetivo de calcular las cantidades totales, este paso tanto para ventas como para compras.
+  
+
+
 
 
   
