@@ -92,6 +92,18 @@ Se decide por una arquitectura de datos en capas:
  - El cargue de las tablas de ventas al tener al rededor de 12 millones de datos se usa el mecanismo fastload que contempla teradata es ideal para cargar grandes volúmenes de datos a alta velocidad, ya que está 
    optimizado para hacer esto de manera rápida y eficiente.
 
+ - Configuración origenes y destino compras:
+   ![image](https://github.com/user-attachments/assets/5a93afd1-d516-495b-921f-8cd56b21b6e6)
+   ![image](https://github.com/user-attachments/assets/f894dbc1-05a1-43f3-a93b-12e0bcd1aa0c)
+
+
+ - Configuración origenes y destino ventas:
+  ![image](https://github.com/user-attachments/assets/2cd51e7f-f774-48cc-9c93-fc4c6045bb46)
+  ![image](https://github.com/user-attachments/assets/e0023e0b-e09c-41b8-8947-469350821f62)
+
+
+
+
 ## Ejecución workflow
 
 ![image](https://github.com/user-attachments/assets/8f7f5f32-484e-46aa-aca8-decb5d6b817d)
@@ -149,6 +161,9 @@ Se inserta en la tabla en zona curada p_dw_tables.challenge_statistics en la ses
 
 ![image](https://github.com/user-attachments/assets/d8bfe6a2-df1c-49bd-9db8-94877f7ad196)
 
+Verificación de datos transformados e ingestados en zona curada:
+
+![image](https://github.com/user-attachments/assets/a37c555c-21ca-429a-b914-0a97b1d8a3b7)
 
 Para la contstrucción de este query se tomo en cuenta lo siguiente:
 
@@ -162,13 +177,23 @@ Para la contstrucción de este query se tomo en cuenta lo siguiente:
 4: Para realizar el calculo del margen ganancia total en porcentaje se emplea la siguiente formula:
   ![image](https://github.com/user-attachments/assets/d961c35e-16f8-43ab-b240-0d60c20aada0)
 
-5: Se tuvo en cuenta las siguientes inconsistencias encontradas:
+5: Se tuvo en cuenta la siguiente inconsistencias detectada:
 - Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se venga mas de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
 
  <pre><code>WHERE TotalQuantitySales<TotalQuantityPurchase</code></pre>
 
+##Generación Reporte
 
+Codigo 1 para generación de reporte PowerBI top 10 marcas con mayor ganancia:
+ <pre><code>SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT DES</code></pre>
 
+Codigo 2 para generación de reporte PowerBI top 10 marcas con mayor margen de ganancia en porcentaje:
+<pre><code>SELECT TOP 10 * FROM TEMP_TABLES.CHALLENGE_STATISTICS ORDER BY MarginPercent DESC</code></pre>
+
+Codigo 3 para generación de reporte PowerBI top marcas/productos debería abandonar como mayorista porque están perdiendo dinero:
+<pre><code>SELECT TOP 3 * FROM TEMP_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT ASC</code></pre>
+
+El reporte en archivo plano se encuentra en el presente repositorio 
 
 -   No se tuvo en cuenta el archivo 'Facturas Compras' ya que no cuenta con toda la información de compras de manera consistente, a continuación un ejemplo:
 
