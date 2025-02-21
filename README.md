@@ -114,7 +114,7 @@ Tabla ventas (muestra de datos):
 
 ![image](https://github.com/user-attachments/assets/d17dd14a-b8ec-42c8-af8d-88fabc593696)
 
-### Query con la logica para dar solución al challenge
+### Query logica para generar ganancias y porcentaje de ganancias
 
 <pre><code>
   SELECT A.Brand,
@@ -146,12 +146,16 @@ WHERE TotalQuantitySales<TotalQuantityPurchase;
 
 Para la contstrucción de este query se tomo en cuenta lo siguiente:
 
-- Cruce de las tablas ventas y compras por la llave de marca (Brand)
-- Se agrupa por marca para poder generar las cantidad de compras y de ventas, adicionalmente para efectuar los siguientes calculos:
-- Para realizar el calculo de la ganancia total se emplea la siguiente formula:
+1: Cruce de las tablas ventas y compras por la llave de marca (Brand)
+2: Se agrupa por marca para poder generar las cantidad de compras y de ventas, adicionalmente para efectuar los siguientes calculos:
+3: Para realizar el calculo de la ganancia total se emplea la siguiente formula:
   ![image](https://github.com/user-attachments/assets/fa2fd3b3-7224-4628-a723-1d438d2c22ef)
 
   Se agrupa por marca y adicionalmente se suma los dolares para dicha marca con objetivo de calcular las cantidades totales, este paso tanto para ventas como para compras.
+
+4: Para realizar el calculo del margen ganancia total en porcentaje se emplea la siguiente formula:
+  ![image](https://github.com/user-attachments/assets/d961c35e-16f8-43ab-b240-0d60c20aada0)
+
   
 
 
