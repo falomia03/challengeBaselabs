@@ -6,6 +6,8 @@ e# Challenge Base Labs - Fabian Alomia
 - Teradata -> Almacenamiento de datos
 - PowerBI -> Visualización de datos
 
+Nota: En el presente repositorio se encuentra el archivo 'sql_code_challenge' el cual contiene el codigo para crear los objetivos y la logica para resolver el challenge e insertar en la tabla en zona curada, adicionalmente se incluye el archivo 'wf_m_challenge.xml' el cual es el export de todo el workflow de informatica powercenter.
+
 ## Analisis datos:
 
 Como primer paso realicé el analisis de los archivos compartidos para el challenge, en este mismo se cuentan con los siguientes insumos:
@@ -117,6 +119,7 @@ Tabla ventas (muestra de datos):
 ### Query logica para generar ganancias y porcentaje de ganancias
 
 <pre><code>
+  INSERT INTO p_dw_tables.challenge_statistics
   SELECT A.Brand,
 	   A.description AS BrandDescription,
        TotalQuantitySales,
@@ -140,9 +143,12 @@ INNER JOIN
           SUM(SalesQuantity) AS TotalQuantitySales
    FROM p_staging.salesInventory
    GROUP BY Brand,description) B ON A.Brand=B.Brand
-WHERE TotalQuantitySales<TotalQuantityPurchase;
+WHERE TotalQuantitySales<TotalQuantityPurchase; </code></pre>
 
-</code></pre>
+Se inserta en la tabla en zona curada p_dw_tables.challenge_statistics en la sesión del workflow que apunta al mapping donde se realiza el export del reporte, dicha inserción se realiza previo a generar el reporte:
+
+![image](https://github.com/user-attachments/assets/d8bfe6a2-df1c-49bd-9db8-94877f7ad196)
+
 
 Para la contstrucción de este query se tomo en cuenta lo siguiente:
 
@@ -157,12 +163,25 @@ Para la contstrucción de este query se tomo en cuenta lo siguiente:
   ![image](https://github.com/user-attachments/assets/d961c35e-16f8-43ab-b240-0d60c20aada0)
 
 5: Se tuvo en cuenta las siguientes inconsistencias encontradas:
+- Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se venga mas de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
 
-	- Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se venga mas de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
+ <pre><code>WHERE TotalQuantitySales<TotalQuantityPurchase</code></pre>
 
- <pre><code> WHERE TotalQuantitySales<TotalQuantityPurchase </code></pre>
 
- 	- 
+
+
+-   No se tuvo en cuenta el archivo 'Facturas Compras' ya que no cuenta con toda la información de compras de manera consistente, a continuación un ejemplo:
+
+  Se toma como referencia el Brand 12218 donde se identifica que tiene una cantidad de 151 compras y 143 ventas: 
+  ![image](https://github.com/user-attachments/assets/4363cdbe-72f5-4ba9-b7a1-0a2864fca675)
+
+  Al realizar la validación sobre la información de compras totales se identifica que el vendorNumber es 1392  
+  ![image](https://github.com/user-attachments/assets/a964f97f-bee8-4246-bcb5-f16d46ecf2f6)
+
+  Tomo como referencia el PONumber 1152 que en teoría sería el identificador de la compra, al buscar en el archivo InvoicePurchases se identifica que al filtrar por el vendorNO 1392 no tiene facturas asociadas al 
+  PONumber 1152:
+
+
 
  
 
