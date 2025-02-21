@@ -182,16 +182,28 @@ Para la contstrucción de este query se tomo en cuenta lo siguiente:
 
  <pre><code>WHERE TotalQuantitySales<TotalQuantityPurchase</code></pre>
 
-##Generación Reporte
+## Generación Reporte
 
 Codigo 1 para generación de reporte PowerBI top 10 marcas con mayor ganancia:
+
  <pre><code>SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT DES</code></pre>
 
+ ![image](https://github.com/user-attachments/assets/51049a01-0d6f-47bb-a5f7-16f1c8a6c041)
+
+
 Codigo 2 para generación de reporte PowerBI top 10 marcas con mayor margen de ganancia en porcentaje:
-<pre><code>SELECT TOP 10 * FROM TEMP_TABLES.CHALLENGE_STATISTICS ORDER BY MarginPercent DESC</code></pre>
+
+<pre><code>SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY MarginPercent DESC</code></pre>
+
+![image](https://github.com/user-attachments/assets/57dd3698-ab6b-47fe-b0ac-d815005a26a9)
+
 
 Codigo 3 para generación de reporte PowerBI top marcas/productos debería abandonar como mayorista porque están perdiendo dinero:
-<pre><code>SELECT TOP 3 * FROM TEMP_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT ASC</code></pre>
+
+<pre><code>SELECT TOP 3 * FROM TP_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT ASC</code></pre>
+
+![image](https://github.com/user-attachments/assets/22a5a2ce-17a8-46bf-9a63-38f14ecf17ee)
+
 
 El reporte en archivo plano se encuentra en el presente repositorio 
 
