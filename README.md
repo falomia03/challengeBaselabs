@@ -1,4 +1,4 @@
-# Challenge Base Labs - Fabian Alomia
+e# Challenge Base Labs - Fabian Alomia
 
 ## Herramientas utilizadas:
 
@@ -29,7 +29,11 @@ Se utilizara los archivos "ventasFinales y comprasFinales" esto debido a que las
 
 Se decide por una arquitectura de datos en capas:
 - Capa Staging -> con objetivo de alojar los datos en un RAW sin modificar, con el objetivo de que en esta capa reposen por si en futuro se desea ampliar el requrimiento a mas criterios de analisis.
-- Capa Curada  -> En esta capa se alojan los datos transformados siguiendo la logica para generar la ganancia y porcentaje de margen.
+- Capa Curada  -> En esta capa se alojan los datos transformados siguiendo la logica para generar la ganancia y porcentaje de margen. Desde esta tabla se generara un reporte en archivo plano y adicionalmente en PowerBI.
+
+## Objetos teradata
+
+- La creación de objetos se encuentra
 
 ## Procesamiento de datos Informatica Powercenter:
 
@@ -39,4 +43,4 @@ Se decide por una arquitectura de datos en capas:
    
    ![image](https://github.com/user-attachments/assets/dac8ca72-a862-4a6c-87dd-d131bd790ade)
 
-   En este mismo se establece 
+   
