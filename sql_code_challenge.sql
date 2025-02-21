@@ -100,3 +100,16 @@ INNER JOIN
    FROM p_staging.salesInventory
    GROUP BY Brand,description) B ON A.Brand=B.Brand
 WHERE TotalQuantitySales<TotalQuantityPurchase;
+
+
+--- 5: Codigo 1 para generación de reporte PowerBI top 10 marcas con mayor ganancia
+
+SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT DES
+
+--- 6: Codigo 2 para generación de reporte PowerBI top 10 marcas con mayor margen de ganancia en porcentaje
+
+SELECT TOP 10 * FROM TEMP_TABLES.CHALLENGE_STATISTICS ORDER BY MarginPercent DESC
+
+--- 7: Codigo 3 para generación de reporte PowerBI top marcas/productos debería abandonar como mayorista porque están perdiendo dinero
+
+SELECT TOP 3 * FROM TEMP_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT ASC
