@@ -1,4 +1,4 @@
-e# Challenge Base Labs - Fabian Alomia
+# Challenge Base Labs - Fabian Alomia
 
 ## Herramientas utilizadas:
 
@@ -205,7 +205,7 @@ Codigo 3 para generación de reporte PowerBI top marcas/productos debería aband
 ![image](https://github.com/user-attachments/assets/22a5a2ce-17a8-46bf-9a63-38f14ecf17ee)
 
 
-El reporte en archivo plano se encuentra en el presente repositorio 
+El reporte en archivo plano se encuentra en el presente repositorio https://github.com/fabianalomia9/challengeBaseLabs/blob/main/challenge_export.txt
 
 -   No se tuvo en cuenta el archivo 'Facturas Compras' ya que no cuenta con toda la información de compras de manera consistente, a continuación un ejemplo:
 
