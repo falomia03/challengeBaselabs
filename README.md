@@ -135,7 +135,7 @@ Tabla ventas (muestra de datos):
 
 ### Query logica para generar ganancias y porcentaje de ganancias
 
-<pre><code>
+<pre><code>`
   INSERT INTO p_dw_tables.challenge_statistics
   SELECT A.Brand,
 	   A.description AS BrandDescription,
@@ -160,7 +160,7 @@ INNER JOIN
           SUM(SalesQuantity) AS TotalQuantitySales
    FROM p_staging.salesInventory
    GROUP BY Brand,description) B ON A.Brand=B.Brand
-WHERE TotalQuantitySales<TotalQuantityPurchase; </code></pre>
+WHERE TotalQuantitySales<TotalQuantityPurchase; `</code></pre>
 
 Se inserta en la tabla en zona curada p_dw_tables.challenge_statistics en la sesión del workflow que apunta al mapping donde se realiza el export del reporte, dicha inserción se realiza previo a generar el reporte:
 
@@ -185,27 +185,27 @@ Para la contstrucción de este query se tomo en cuenta lo siguiente:
 5: Se tuvo en cuenta la siguiente inconsistencias detectada:
 - Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se dendan mas productos de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
 
- <pre><code> WHERE TotalQuantitySales < TotalQuantityPurchase </code></pre>
+ <pre><code>` WHERE TotalQuantitySales < TotalQuantityPurchase `</code></pre>
 
 ## Generación Reporte
 
 Codigo 1 para generación de reporte PowerBI top 10 marcas con mayor ganancia:
 
- <pre><code>SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT DES</code></pre>
+ <pre><code>`SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT DESC`</code></pre>
 
  ![image](https://github.com/user-attachments/assets/51049a01-0d6f-47bb-a5f7-16f1c8a6c041)
 
 
 Codigo 2 para generación de reporte PowerBI top 10 marcas con mayor margen de ganancia en porcentaje:
 
-<pre><code>SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY MarginPercent DESC</code></pre>
+<pre><code>`SELECT TOP 10 * FROM P_DW_TABLES.CHALLENGE_STATISTICS ORDER BY MarginPercent DESC`</code></pre>
 
 ![image](https://github.com/user-attachments/assets/57dd3698-ab6b-47fe-b0ac-d815005a26a9)
 
 
 Codigo 3 para generación de reporte PowerBI top marcas/productos debería abandonar como mayorista porque están perdiendo dinero:
 
-<pre><code>SELECT TOP 3 * FROM TP_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT ASC</code></pre>
+<pre><code>`SELECT TOP 3 * FROM TP_DW_TABLES.CHALLENGE_STATISTICS ORDER BY PROFIT ASC`</code></pre>
 
 ![image](https://github.com/user-attachments/assets/22a5a2ce-17a8-46bf-9a63-38f14ecf17ee)
 
@@ -225,6 +225,7 @@ No se tuvo en cuenta el archivo 'Facturas Compras' ya que no cuenta con toda la 
   Tomo como referencia el PONumber 1152 que en teoría sería el identificador de la compra, al buscar en el archivo InvoicePurchases se identifica que al filtrar por el vendorNO 1392 no tiene facturas asociadas al 
   PONumber 1152:
 
+![image](https://github.com/user-attachments/assets/a6088e50-e8a5-495b-8369-b7d8f053fe8b)
 
 
  
