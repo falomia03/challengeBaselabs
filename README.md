@@ -12,10 +12,10 @@ Nota: En el presente repositorio se encuentra el archivo 'sql_code_challenge' el
 
 Como primer paso realicé el analisis de los archivos compartidos para el challenge, en este mismo se cuentan con los siguientes insumos:
 
-1: Archvo sales final contiene las ventas de la licorera
-2: Archivo purchases final contiene las compras de la licorera
-3: Purchase price contiene precio de compra y precio de ventas
-4: invoice Purchase contiene información de facturación agrupada por ventas de proveedor
+1: Archvo sales final contiene las ventas de la licorera.
+2: Archivo purchases final contiene las compras de la licorera.
+3: Purchase price contiene precio de compra y precio de ventas.
+4: invoice Purchase contiene información de facturación agrupada por ventas de proveedor.
 5: BegInvFINAL contiene inventario inicial por tienda año 2016.
 6: EndInvFINAL contiene inventario final por tienda año 2016.
 
