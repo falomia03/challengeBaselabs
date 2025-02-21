@@ -33,14 +33,50 @@ Se decide por una arquitectura de datos en capas:
 
 ## Objetos teradata
 
-- La creación de objetos se encuentra
+- El codigo para la creación de objetos se encuentra creado en el presente repositorio https://github.com/fabianalomia9/challengeBaseLabs/blob/main/sql_code_challenge.sql
 
 ## Procesamiento de datos Informatica Powercenter:
 
-### Creación origenes
+### Creación origenes y destinos
 
- - Se genera el primer origen de tipo archivo plano para la lectura del CSV:
+ - Se genera el primer origen de tipo archivo plano para la lectura del CSV (compras):
    
    ![image](https://github.com/user-attachments/assets/dac8ca72-a862-4a6c-87dd-d131bd790ade)
 
+ - Se genera el segundo origen de tipo archivo plano para la lectura del CSV (ventas):
+
+   ![image](https://github.com/user-attachments/assets/d2d9926f-d84e-4cf8-bc51-f94785cca2cb)
+
+ - Se genera el  origen de tipo 'Teradata' para el export del reporte:
+
+   ![image](https://github.com/user-attachments/assets/c5c02e07-e58f-47b9-a62a-0e60e3b73e33)
+
+
+ - Se genera el destino de tipo 'Teradata' respetando el esquema relacionado en los objetos de creación (ventas):
+
+   ![image](https://github.com/user-attachments/assets/5e6120c7-13be-4587-a0d3-f50b9ea70db6)
+
+
+ - Se genera el destino de tipo 'Teradata' respetando el esquema relacionado en los objetos de creación (compras):
+
+   ![image](https://github.com/user-attachments/assets/dd7bcf20-76eb-4c24-88a0-fdf945b84fc8)
+
+ - Se genera el destino de tipo 'archivo plano' para el export del reporte:
+
+   ![image](https://github.com/user-attachments/assets/3c42dfd5-e259-4fed-a5b4-399e9c44fbf1)
+
+
+ ### Creación de mappings
+
+ - Mapping para el flujo de datos de compras:
+ ![image](https://github.com/user-attachments/assets/9cd69b32-8584-4009-929f-e5501818d816)
+
+ Se realiza un tratamiento a los campos de tipo fecha se la siguiente manera:
+ <pre><code>`TO_DATE(InvoiceDatePayDate,'YYYY-MM-DD')`</code></pre>
+
    
+
+
+
+   
+ 
