@@ -13,13 +13,18 @@ Nota: En el presente repositorio se encuentra el archivo 'sql_code_challenge' el
 Como primer paso realicé el analisis de los archivos compartidos para el challenge, en este mismo se cuentan con los siguientes insumos:
 
 1: Archvo sales final contiene las ventas de la licorera.
+
 2: Archivo purchases final contiene las compras de la licorera.
+
 3: Purchase price contiene precio de compra y precio de ventas.
+
 4: invoice Purchase contiene información de facturación agrupada por ventas de proveedor.
+
 5: BegInvFINAL contiene inventario inicial por tienda año 2016.
+
 6: EndInvFINAL contiene inventario final por tienda año 2016.
 
-Para relsover el challenge:
+Para resolver el challenge:
 - Incorpore de manera eficiente los archivos csv relevantes en una base de datos adecuada.
 - Transforme los datos para calcular ganancias ($) y márgenes (%).
   1. Las 10 marcas principales con mayor rentabilidad ($) y margen (%).
@@ -30,12 +35,12 @@ Se utilizara los archivos "ventasFinales y comprasFinales" esto debido a que las
 ## Definición Arquitectura:
 
 Se decide por una arquitectura de datos en capas:
-- Capa Staging -> con objetivo de alojar los datos en un RAW sin modificar, con el objetivo de que en esta capa reposen por si en futuro se desea ampliar el requrimiento a mas criterios de analisis.
+- Capa Staging -> con objetivo de alojar los datos en un RAW sin modificar, con el objetivo de que en esta capa reposen los datos por si en futuro se desea ampliar el requerimiento a mas criterios de analisis.
 - Capa Curada  -> En esta capa se alojan los datos transformados siguiendo la logica para generar la ganancia y porcentaje de margen. Desde esta tabla se generara un reporte en archivo plano y adicionalmente en PowerBI.
 
 ## Objetos teradata
 
-- El codigo para la creación de objetos se encuentra creado en el presente repositorio https://github.com/fabianalomia9/challengeBaseLabs/blob/main/sql_code_challenge.sql
+- El codigo para la creación de objetos, y logica para resolver el challenge se encuentra creado en el presente repositorio https://github.com/fabianalomia9/challengeBaseLabs/blob/main/sql_code_challenge.sql
 
 ## Procesamiento de datos Informatica Powercenter:
 
@@ -89,7 +94,7 @@ Se decide por una arquitectura de datos en capas:
 
 ![image](https://github.com/user-attachments/assets/6b85a382-f356-418e-bb6b-d1d38079488f)
 
- - El cargue de las tablas de ventas al tener al rededor de 12 millones de datos se usa el mecanismo fastload que contempla teradata es ideal para cargar grandes volúmenes de datos a alta velocidad, ya que está 
+ - Para el cargue de las tablas de ventas y compras al tener al rededor de 12 millones de datos se usa el mecanismo fastload que contempla teradata, es ideal para cargar grandes volúmenes de datos a alta velocidad, ya que está 
    optimizado para hacer esto de manera rápida y eficiente.
 
  - Configuración origenes y destino compras:
@@ -178,9 +183,9 @@ Para la contstrucción de este query se tomo en cuenta lo siguiente:
   ![image](https://github.com/user-attachments/assets/d961c35e-16f8-43ab-b240-0d60c20aada0)
 
 5: Se tuvo en cuenta la siguiente inconsistencias detectada:
-- Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se venga mas de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
+- Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se dendan mas productos de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
 
- <pre><code>WHERE TotalQuantitySales<TotalQuantityPurchase</code></pre>
+ <pre><code> WHERE TotalQuantitySales < TotalQuantityPurchase </code></pre>
 
 ## Generación Reporte
 
@@ -207,7 +212,9 @@ Codigo 3 para generación de reporte PowerBI top marcas/productos debería aband
 
 El reporte en archivo plano se encuentra en el presente repositorio https://github.com/fabianalomia9/challengeBaseLabs/blob/main/challenge_export.txt
 
--   No se tuvo en cuenta el archivo 'Facturas Compras' ya que no cuenta con toda la información de compras de manera consistente, a continuación un ejemplo:
+### Nota
+
+No se tuvo en cuenta el archivo 'Facturas Compras' ya que no cuenta con toda la información de compras de manera consistente, a continuación un ejemplo:
 
   Se toma como referencia el Brand 12218 donde se identifica que tiene una cantidad de 151 compras y 143 ventas: 
   ![image](https://github.com/user-attachments/assets/4363cdbe-72f5-4ba9-b7a1-0a2864fca675)
