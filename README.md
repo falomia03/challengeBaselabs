@@ -71,8 +71,26 @@ Se decide por una arquitectura de datos en capas:
  - Mapping para el flujo de datos de compras:
  ![image](https://github.com/user-attachments/assets/9cd69b32-8584-4009-929f-e5501818d816)
 
- Se realiza un tratamiento a los campos de tipo fecha se la siguiente manera:
- <pre><code>`TO_DATE(InvoiceDatePayDate,'YYYY-MM-DD')`</code></pre>
+  Se realiza un tratamiento a los campos de tipo fecha se la siguiente manera:
+  <pre><code>`TO_DATE(InvoiceDatePayDate,'YYYY-MM-DD')`</code></pre>
+
+ - Mapping para el flujo de datos de ventas:
+
+   ![image](https://github.com/user-attachments/assets/e31d3368-0674-4ce7-baeb-9e59c84b5aec)
+
+ - Mapping para el flujo de exportable:
+
+   ![image](https://github.com/user-attachments/assets/8a5b734d-269f-432f-ab4b-f2668e4afd6f)
+
+
+### Creación de workflow
+
+![image](https://github.com/user-attachments/assets/6b85a382-f356-418e-bb6b-d1d38079488f)
+
+ - El cargue de las tablas de ventas al tener al rededor de 12 millones de datos se usa el mecanismo fastload que contempla teradata es ideal para cargar grandes volúmenes de datos a alta velocidad, ya que está 
+   optimizado para hacer esto de manera rápida y eficiente.
+
+  
 
    
 
