@@ -6,7 +6,7 @@
 - Teradata -> Almacenamiento de datos
 - PowerBI -> Visualización de datos
 
-Nota: En el presente repositorio se encuentra el archivo 'sql_code_challenge' el cual contiene el codigo para crear los objetivos y la logica para resolver el challenge e insertar en la tabla en zona curada, adicionalmente se incluye el archivo 'wf_m_challenge.xml' el cual es el export de todo el workflow de informatica powercenter.
+Nota: En el presente repositorio se encuentra el archivo 'sql_code_challenge' el cual contiene el codigo para crear los objetivos y la logica para resolver el challenge e insertar en la tabla en zona curada, adicionalmente se incluye el archivo 'wf_m_challenge.xml' el cual es el export de todo el workflow de informatica powercenter y tambien el reporte generado a traves del proyecto.
 
 ## Analisis datos:
 
