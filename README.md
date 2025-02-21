@@ -156,6 +156,16 @@ Para la contstrucción de este query se tomo en cuenta lo siguiente:
 4: Para realizar el calculo del margen ganancia total en porcentaje se emplea la siguiente formula:
   ![image](https://github.com/user-attachments/assets/d961c35e-16f8-43ab-b240-0d60c20aada0)
 
+5: Se tuvo en cuenta las siguientes inconsistencias encontradas:
+
+	- Se excluyen aquellas marcas en las que la cantidad de ventas supera la cantidad compras, lo cual no es congruente por que no es posible que se venga mas de lo que se tiene en stock, esto se realiza a travez del siguiente filtro:
+
+ <pre><code> WHERE TotalQuantitySales<TotalQuantityPurchase </code></pre>
+
+ 	- 
+
+ 
+
   
 
 
